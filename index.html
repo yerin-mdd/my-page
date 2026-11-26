@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이예린 | 모두닥 라식라섹팀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* 모두닥 디자인시스템 (피그마 "⭐️ Design Style" 페이지, 2026-11-17 읽음) */
+    :root {
+      /* 색 */
+      --violet50: #5307B0;
+      --violet10: #F1EDFC;
+      --violet-surface: #F8F7FC;
+      --white: #FFFFFF;
+      --neutral90: #2D2C2E;
+      --neutral70: #5E5D61;
+      --neutral60: #87868A;
+      --neutral20: #EFEFF2;
+
+      /* 간격 ($spacing-xx) */
+      --spacing-02: 4px;
+      --spacing-04: 8px;
+      --spacing-05: 12px;
+      --spacing-06: 16px;
+      --spacing-08: 24px;
+      --spacing-10: 32px;
+      --spacing-12: 48px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 400;
+      background: var(--violet-surface);
+      color: var(--neutral90);
+      padding: var(--spacing-12) var(--spacing-06);   /* 모바일 좌우 margin 16 */
+    }
+
+    main {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-06);
+    }
+
+    .profile-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* H6_36_R : 36px / 행간 54 / 자간 -0.9px */
+    h1 {
+      font-size: 36px;
+      line-height: 54px;
+      letter-spacing: -0.9px;
+      font-weight: 400;
+    }
+
+    /* S1_16_R : 16px / 행간 24 / 자간 -0.6px */
+    .team {
+      margin-top: var(--spacing-02);
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.6px;
+      color: var(--violet50);
+    }
+
+    /* 버튼 : Medium 사각형 (높이 40px, 좌우 여백 12px) */
+    .greet-button {
+      margin-top: var(--spacing-08);
+      height: 40px;
+      padding: 0 var(--spacing-05);
+      border: none;
+      border-radius: 8px;
+      background: var(--violet50);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 14px;          /* B2_14_M */
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: -0.4px;
+      cursor: pointer;
+    }
+
+    /* 인사 철회하기 상태 : 회색 */
+    .greet-button.withdraw {
+      background: var(--neutral20);
+      color: var(--neutral70);
+    }
+
+
+    .greet-message {
+      margin-top: var(--spacing-05);
+      font-size: 16px;          /* S1_16_R */
+      line-height: 24px;
+      letter-spacing: -0.6px;
+      color: var(--violet50);
+    }
+
+    section {
+      margin-top: var(--spacing-10);
+      padding-top: var(--spacing-08);
+      border-top: 1px solid var(--neutral20);
+    }
+
+    /* B2_14_R1 : 14px / 행간 20 / 자간 -0.6px */
+    h2 {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.6px;
+      font-weight: 400;
+      color: var(--neutral60);
+      margin-bottom: var(--spacing-04);
+    }
+
+    /* S1_16_R */
+    p, li {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.6px;
+      color: var(--neutral70);
+    }
+
+    ul { list-style: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="profile">
+      <img class="profile-image" src="profile.jpg" alt="이예린 프로필 이미지">
+      <div>
+        <h1>이예린</h1>
+        <p class="team">모두닥 라식라섹팀</p>
+      </div>
+    </div>
+
+    <button class="greet-button" id="greet-button" type="button" onclick="toggleGreeting()">인사하기</button>
+    <p class="greet-message" id="greet" hidden>반갑습니다!</p>
+
+    <section>
+      <h2>하는 일</h2>
+      <p>시력교정술 니즈가 있는 유저가 더 저렴한 가격에 높은 질의 수술을 받을 수 있도록, 유저에게 모두닥을 알리는 일을 하고 있습니다.</p>
+    </section>
+
+    <section>
+      <h2>좋아하는 것</h2>
+      <ul>
+        <li>아침</li>
+        <li>점심</li>
+        <li>저녁</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>모두닥에서 내가 풀고 싶은 문제</h2>
+      <p>사람들이 의료정보, 좋은 병원이 필요할 때 자연스럽게 모두닥부터 떠올리도록 만들고 싶습니다.</p>
+    </section>
+  </main>
+    <script>
+    function toggleGreeting() {
+      const button = document.getElementById('greet-button');
+      const message = document.getElementById('greet');
+
+      if (message.hidden) {
+        message.hidden = false;
+        button.textContent = '인사 철회하기';
+        button.classList.add('withdraw');
+      } else {
+        message.hidden = true;
+        button.textContent = '인사하기';
+        button.classList.remove('withdraw');
+      }
+    }
+  </script>
+
+</body>
+</html>
